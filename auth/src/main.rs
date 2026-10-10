@@ -113,7 +113,7 @@ async fn editor_publish_article(
     })))
 }
 
-// C. FINANCE LOGIC: Can update a user's salary
+
 #[derive(Deserialize)]
 struct SalaryPayload { salary: i32 }
 
