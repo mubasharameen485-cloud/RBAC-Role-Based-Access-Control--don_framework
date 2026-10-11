@@ -17,7 +17,6 @@ export function AuthProvider({ children }) {
     if (token) {
       try {
         const decoded = jwtDecode(token);
-        // Check if token is expired
         if (decoded.exp * 1000 > Date.now()) {
           setUser({
             username: decoded.sub,
@@ -28,7 +27,6 @@ export function AuthProvider({ children }) {
           localStorage.removeItem('don_token');
         }
       } catch (err) {
-        console.error('Invalid token format');
         localStorage.removeItem('don_token');
       }
     }
@@ -43,7 +41,12 @@ export function AuthProvider({ children }) {
       role: decoded.role,
       token,
     });
-    router.push('/dashboard');
+
+    // Smart Role Redirection
+    if (decoded.role === 'manager') router.push('/dashboard/manager');
+    else if (decoded.role === 'editor') router.push('/dashboard/editor');
+    else if (decoded.role === 'finance') router.push('/dashboard/finance');
+    else router.push('/dashboard');
   };
 
   const logout = () => {
