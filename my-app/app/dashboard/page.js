@@ -1,4 +1,4 @@
-// src/app/dashboard/page.jsx
+
 'use client';
 
 import { useAuth } from '@/context/AuthContext';

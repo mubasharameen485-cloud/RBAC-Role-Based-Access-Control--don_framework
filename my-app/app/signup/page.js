@@ -1,4 +1,4 @@
-// src/app/signup/page.jsx
+
 'use client';
 
 import { useForm } from 'react-hook-form';
